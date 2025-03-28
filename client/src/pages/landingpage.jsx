@@ -265,7 +265,7 @@ function LandingPage() {
     try {
       // Step 1: Create Subscription via API
       const response = await axios.post(
-        "http://localhost:3005/api/subscriptions",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/subscriptions`,
         {
           planId,
           email: userInfo?.email,
@@ -284,11 +284,14 @@ function LandingPage() {
         handler: async (response) => {
           console.log("Razorpay Response:", response);
           try {
-            await axios.post("http://localhost:3005/api/verify-payment", {
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_subscription_id: response.razorpay_subscription_id,
-              razorpay_signature: response.razorpay_signature,
-            });
+            await axios.post(
+              `${process.env.NEXT_PUBLIC_API_URL}/api/verify-payment`,
+              {
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_subscription_id: response.razorpay_subscription_id,
+                razorpay_signature: response.razorpay_signature,
+              }
+            );
             toast.success("Subscription successful", {
               position: "top-center",
             });
