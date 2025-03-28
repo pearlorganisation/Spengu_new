@@ -2,7 +2,7 @@ import React from "react";
 import ChatHeader from "./ChatHeader";
 import ChatContainer from "./ChatContainer";
 import MessageBar from "./MessageBar";
-import ContactsList from "../ChatListasdsad/ContactsList";
+import ContactsList from "../ChatList/ContactsList";
 import { useStateProvider } from "@/context/StateContext";
 
 const MobileChat = () => {
