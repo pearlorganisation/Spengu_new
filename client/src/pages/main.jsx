@@ -20,7 +20,7 @@ import { HOST } from "@/utils/ApiRoutes";
 // import IncomingCall from "./common/IncomingCall";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import ChatList from "@/components/Chatlist/ChatList";
+import ChatList from "@/components/ChatList/ChatList";
 import IncomingCall from "@/components/common/IncomingCall";
 import IncomingVideoCall from "@/components/common/IncomingVideoCall";
 import Chat from "@/components/Chat/Chat";
