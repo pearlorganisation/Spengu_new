@@ -38,7 +38,7 @@ const products = [
     id: 3,
     name: "English Speaking & Novel Books PDF",
     // href: "/novelpdf",
-    href: "/novelpdf",
+    href: "/",
     price: "",
     imageSrc: "/avatars/novel.jpg",
     imageAlt: "",
