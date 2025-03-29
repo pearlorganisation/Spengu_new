@@ -1,11 +1,13 @@
-export const HOST = process.env.NEXT_PUBLIC_API_URL 
+export const HOST = process.env.NEXT_PUBLIC_API_URL;
 
 const AUTH_ROUTE = `${HOST}/api/auth`;
 const MESSAGES_ROUTE = `${HOST}/api/messages`;
 
-const PLANS_ROUTE = `${HOST}/api/plans`;
-const SUBSCRIPTIONS_ROUTE = `${HOST}/api/subscriptions`;
+export const PLANS_ROUTE = `${HOST}/api/plans`;
+export const SUBSCRIPTIONS_ROUTE = `${HOST}/api/subscriptions`;
+export const VERIFY_PAYMENT_ROUTE = `${HOST}/api/verify-payment`;
 
+export const GET_USER_SUBSCRIPTIONS = `${SUBSCRIPTIONS_ROUTE}/user`;
 export const CHECK_USER_ROUTE = `${AUTH_ROUTE}/check-user`;
 export const ONBOARD_USER_ROUTE = `${AUTH_ROUTE}/onboard-user`;
 export const GET_ALL_CONTACTS = `${AUTH_ROUTE}/get-contacts`;

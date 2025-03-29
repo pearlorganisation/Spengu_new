@@ -13,7 +13,12 @@ import { useRouter } from "next/router";
 import { useStateProvider } from "@/context/StateContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { GET_ALL_PLANS } from "@/utils/ApiRoutes";
+import {
+  GET_ALL_PLANS,
+  GET_USER_SUBSCRIPTIONS,
+  SUBSCRIPTIONS_ROUTE,
+  VERIFY_PAYMENT_ROUTE,
+} from "@/utils/ApiRoutes";
 
 const products = [
   {
@@ -210,13 +215,21 @@ const links = [
 ];
 
 function LandingPage() {
+  // const [{ userInfo }, dispatch] = useStateProvider();
   const [{ userInfo }, dispatch] = useStateProvider();
 
+  useEffect(() => {
+    const storedUserInfo =
+      typeof window !== "undefined" ? localStorage.getItem("userInfo") : null;
+    if (storedUserInfo) {
+      dispatch({ type: "SET_USER_INFO", payload: JSON.parse(storedUserInfo) });
+    }
+  }, []);
   const [userData, setUserData] = useState(null);
   const router = useRouter();
 
-  const user =
-    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  // const user =
+  //   typeof window !== "undefined" ? localStorage.getItem("user") : null;
 
   // useEffect(() => {
   //   if (!user) {
@@ -243,6 +256,8 @@ function LandingPage() {
   // }, []);
 
   const [plans, setPlans] = useState([]);
+
+  const [userSubscription, setUserSubscription] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -262,6 +277,34 @@ function LandingPage() {
     getPlans();
   }, []);
 
+  console.log(userInfo, "userInfo on shubhamsdjasldkj");
+
+  useEffect(() => {
+    const getUserSubscription = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `${GET_USER_SUBSCRIPTIONS}/${userInfo?.id}`
+        );
+        console.log(
+          "Response for Fetching user subscription ",
+          response?.data?.data
+        );
+        setUserSubscription(response?.data?.data);
+
+        setLoading(false);
+      } catch (error) {
+        console.log("Error fetching user subscription", error);
+      }
+    };
+
+    if (userInfo?.id) {
+      getUserSubscription();
+    }
+  }, []);
+
+  console.log(userSubscription, "userSubscription");
+
   const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
   // console.log("key---- ", razorpayKey);
   const handleSubscription = async ({ planId }) => {
@@ -272,14 +315,11 @@ function LandingPage() {
 
     try {
       // Step 1: Create Subscription via API
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/subscriptions`,
-        {
-          planId,
-          email: userInfo?.email,
-          userId: userInfo?.id,
-        }
-      );
+      const response = await axios.post(SUBSCRIPTIONS_ROUTE, {
+        planId,
+        email: userInfo?.email,
+        userId: userInfo?.id,
+      });
 
       const { subscriptionId } = response?.data?.data; //
 
@@ -292,14 +332,11 @@ function LandingPage() {
         handler: async (response) => {
           console.log("Razorpay Response:", response);
           try {
-            await axios.post(
-              `${process.env.NEXT_PUBLIC_API_URL}/api/verify-payment`,
-              {
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_subscription_id: response.razorpay_subscription_id,
-                razorpay_signature: response.razorpay_signature,
-              }
-            );
+            await axios.post(VERIFY_PAYMENT_ROUTE, {
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_subscription_id: response.razorpay_subscription_id,
+              razorpay_signature: response.razorpay_signature,
+            });
             toast.success("Subscription successful", {
               position: "top-center",
             });
@@ -314,8 +351,7 @@ function LandingPage() {
         prefill: {
           name: userInfo?.name,
           email: userInfo?.email,
-
-          // contact: "9999999999",
+          contact: userInfo?.mobileNumber,
         },
         theme: {
           color: "#3399cc",
@@ -334,8 +370,6 @@ function LandingPage() {
       console.error("Error initiating subscription:", error);
     }
   };
-
-  console.log(userData, "1223423");
 
   return (
     <div className="relative isolate overflow-hidden bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-32">
@@ -375,16 +409,24 @@ function LandingPage() {
           </dl>
         </div>
         <div className="flex justify-center mt-3">
-          <button
-            onClick={() =>
-              handleSubscription({
-                planId: plans[0]?.planId,
-              })
-            }
-            class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup"
-          >
-            Join Now
-          </button>
+          {userSubscription?.length > 0 &&
+          userSubscription[0]?.status == "ACTIVE" ? (
+            <button className="text-white px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700">
+              {" "}
+              Already Subscribed
+            </button>
+          ) : (
+            <button
+              onClick={() =>
+                handleSubscription({
+                  planId: plans[0]?.planId,
+                })
+              }
+              class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup"
+            >
+              Join Now
+            </button>
+          )}
         </div>
       </div>
       <br></br>
