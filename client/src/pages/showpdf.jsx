@@ -73,7 +73,7 @@ function showpdf() {
     {
       id: 1,
       name: "Online Chatting",
-      href: "/onboarding",
+      href: "/main",
 
       price: "",
       imageSrc: "/avatars/chat.jpg",
@@ -82,7 +82,7 @@ function showpdf() {
     {
       id: 2,
       name: "Online One on One Calling",
-      href: "/onboarding",
+      href: "/main",
       // href: "/",
       price: "",
       imageSrc: "/avatars/calling.avif",

@@ -13,6 +13,8 @@ import { reducerCases } from "@/context/constans";
 function onboarding() {
   const router = useRouter();
   const [{ userInfo, newUser }, dispatch] = useStateProvider();
+
+  console.log(userInfo, "user info in onboarding");
   const [name, setName] = useState(userInfo?.name || "");
   const [about, setAbout] = useState("");
 

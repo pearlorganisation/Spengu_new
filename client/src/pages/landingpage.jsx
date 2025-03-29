@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
-import phone from "../../public/avatars/1.png";
+import phone from "../../public/avatars/phone.jpg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useStateProvider } from "@/context/StateContext";
@@ -276,8 +276,6 @@ function LandingPage() {
 
     getPlans();
   }, []);
-
-  console.log(userInfo, "userInfo on shubhamsdjasldkj");
 
   useEffect(() => {
     const getUserSubscription = async () => {
