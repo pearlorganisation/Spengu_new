@@ -44,9 +44,9 @@ function ChatListHeader() {
       <div className="flex flex-row  gap-6">
         <Link
           href="/showpdf"
-          className="w-full  items-center rounded-md bg-orange-50 mt-1 mr-12 px-3 py-0.1 text-sm font-medium text-black-800 ring-1  ring-inset transition hover:bg-orange-100"
+          className="w-full  items-center justify-center text-center rounded-md bg-orange-50 mt-1 mr-12 px-3 py-0.1 text-sm font-medium text-black-800 ring-1  ring-inset transition hover:bg-orange-100"
         >
-          Our Course's
+          <h1 className="px-2 mt-2"> Our Course's</h1>
         </Link>
         <BsFillChatLeftTextFill
           className="text-panel-header-icon cursor-pointer text-xl size-12 md:size-12"
