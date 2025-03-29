@@ -19,7 +19,8 @@ const products = [
   {
     id: 1,
     name: "Online Chatting",
-    href: "/onboarding",
+    // href: "/onboarding",
+    href: "/",
     price: "",
     imageSrc: "/avatars/chat.jpg",
     imageAlt: "",
@@ -27,7 +28,8 @@ const products = [
   {
     id: 2,
     name: "Online One on One Calling",
-    href: "/onboarding",
+    // href: "/onboarding",
+    href: "/",
     price: "",
     imageSrc: "/avatars/calling.avif",
     imageAlt: "",
@@ -35,6 +37,7 @@ const products = [
   {
     id: 3,
     name: "English Speaking & Novel Books PDF",
+    // href: "/novelpdf",
     href: "/novelpdf",
     price: "",
     imageSrc: "/avatars/novel.jpg",
@@ -43,7 +46,8 @@ const products = [
   {
     id: 4,
     name: "English News for up to date",
-    href: "https://www.firstpost.com/shorts/",
+    // href: "https://www.firstpost.com/shorts/",
+    href: "/",
     price: "",
     imageSrc: "/avatars/news.jpg",
     imageAlt: "",
@@ -51,7 +55,8 @@ const products = [
   {
     id: 5,
     name: "English Learning Games",
-    href: "/englishquizz",
+    // href: "/englishquizz",
+    href: "/",
     price: "",
     imageSrc: "/avatars/games.jpg",
     imageAlt: "",
@@ -67,7 +72,8 @@ const products = [
   {
     id: 6,
     name: "Interview Practice Excersie Notes",
-    href: "/interview",
+    // href: "/interview",
+    href: "/",
     price: "",
     imageSrc: "/avatars/interview.jpg",
     imageAlt: "",
@@ -75,7 +81,8 @@ const products = [
   {
     id: 7,
     name: "English Learning For Kids",
-    href: "/englishkids",
+    // href: "/englishkids",
+    href: "/",
     price: "",
     imageSrc: "/avatars/kids1.jpg",
     imageAlt: "",
@@ -83,7 +90,8 @@ const products = [
   {
     id: 8,
     name: "1000+ Daily Use Sentences",
-    href: "/dailyusesentences",
+    // href: "/dailyusesentences",
+    href: "/",
     price: "",
     imageSrc: "/avatars/daily use sentences.jpg",
     imageAlt: "",
@@ -392,7 +400,11 @@ function LandingPage() {
 
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {products.map((product) => (
-              <a key={product.id} href={product.href} className="group">
+              <a
+                key={product.id}
+                // href={product.href}
+                className="group"
+              >
                 <img
                   alt={product.imageAlt}
                   src={product.imageSrc}

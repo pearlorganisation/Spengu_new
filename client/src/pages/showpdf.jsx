@@ -69,6 +69,89 @@ function showpdf() {
     },
   ];
 
+  const productLinks = [
+    {
+      id: 1,
+      name: "Online Chatting",
+      href: "/onboarding",
+
+      price: "",
+      imageSrc: "/avatars/chat.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 2,
+      name: "Online One on One Calling",
+      href: "/onboarding",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/calling.avif",
+      imageAlt: "",
+    },
+    {
+      id: 3,
+      name: "English Speaking & Novel Books PDF",
+
+      href: "/novelpdf",
+      price: "",
+      imageSrc: "/avatars/novel.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 4,
+      name: "English News for up to date",
+      href: "https://www.firstpost.com/shorts/",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/news.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 5,
+      name: "English Learning Games",
+      href: "/englishquizz",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/games.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 6,
+      name: "English Learning Short Videos",
+      href: "",
+      price: "",
+      imageSrc: "/avatars/videos1.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 6,
+      name: "Interview Practice Excersie Notes",
+      href: "/interview",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/interview.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 7,
+      name: "English Learning For Kids",
+      href: "/englishkids",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/kids1.jpg",
+      imageAlt: "",
+    },
+    {
+      id: 8,
+      name: "1000+ Daily Use Sentences",
+      href: "/dailyusesentences",
+      // href: "/",
+      price: "",
+      imageSrc: "/avatars/daily use sentences.jpg",
+      imageAlt: "",
+    },
+  ];
+
   return (
     <div className="bg-gray-900 w-full min-h-screen text-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-1 lg:max-w-6xl lg:px-1">
@@ -156,6 +239,33 @@ function showpdf() {
               </a>
             ))}
           </div>
+        </div>
+      </div>
+
+      <div className="mt-8 px-10 ">
+        <h1 className="font-bold text-4xl text-center">Features </h1>
+
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mt-12">
+          {productLinks.map((product) => (
+            <a key={product.id} href={product.href} className="group">
+              <img
+                alt={product.imageAlt}
+                src={product.imageSrc}
+                width={100}
+                className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
+              />
+
+              <h3 className="mt-1 text-md font-semibold text-white-700">
+                {product.name}
+              </h3>
+              <p className="mt-1 text-md font-bold text-white-900">
+                {product.price}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-green-300">
+                {product.imageAlt}
+              </p>
+            </a>
+          ))}
         </div>
       </div>
     </div>
