@@ -86,7 +86,7 @@ function Avtar({ type, image, setImage }) {
             <Image
               src={image}
               alt="spoken english guru avatar"
-              className="rounded-full"
+              className="rounded-full border-2 border-pink-500"
               fill
             />
           </div>
@@ -96,7 +96,7 @@ function Avtar({ type, image, setImage }) {
             <Image
               src={image}
               alt="spoken english guru avatar"
-              className="rounded-full"
+              className="rounded-full  border-2 border-pink-500"
               fill
             />
           </div>
@@ -131,7 +131,7 @@ function Avtar({ type, image, setImage }) {
               <Image
                 src={image}
                 alt="spoken english guru avatar"
-                className="rounded-full"
+                className="rounded-full  border-2 border-pink-500"
                 fill
               />
             </div>

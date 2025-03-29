@@ -18,7 +18,7 @@ function onboarding() {
 
   const [mobileNumber, setMobileNumber] = useState("");
   const [image, setImage] = useState(defaultAvtar);
-  console.log("user ingo", userInfo);
+
   // useEffect(() => {
   //   if (!newUser && !userInfo?.email) router.push("/login");
   //   else if (!newUser && userInfo?.email) router.push("/");
@@ -71,10 +71,16 @@ function onboarding() {
     return true;
   };
   return (
-    <div className="bg-panel-header-background h-full w-screen text-white flex flex-col items-center justify-center">
+    <div className="bg-panel-header-background h-full px-4 py-4 min-h-screen w-screen text-white flex flex-col items-center justify-center">
       {" "}
       <div className="flex items-center justify-center gap-2">
-        <Image src={spengu} alt="spengu" width={200} height={200} />
+        <Image
+          src={spengu}
+          alt="spengu"
+          width={200}
+          height={200}
+          className="rounded-full"
+        />
         <span className="text-7xl">Spengu</span>
       </div>
       <h2 className="text-2xl">Create your profile</h2>
@@ -95,7 +101,7 @@ function onboarding() {
           />
           <div className="flex items-center justify-center">
             <button
-              className="flex items-center justify-center gap-7 bg-search-input-container-background p-3  rounded-lg"
+              className="flex items-center justify-center gap-7 bg-search-input-container-background p-3  rounded-lg border-red-500"
               onClick={onboardUserHandler}
             >
               Create Profile

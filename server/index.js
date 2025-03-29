@@ -57,6 +57,7 @@ const io = new Server(server, {
       "http://localhost:3000",
       "http://localhost:5173",
       "https://sepngu-mern.vercel.app",
+      "https://spengu-new.vercel.app",
     ],
   },
 });
