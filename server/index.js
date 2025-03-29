@@ -13,6 +13,7 @@ import verifyPaymentRouter from "./routes/verifyPaymentRoutes.js";
 import notificationRouter from "./routes/notificationRoutes.js";
 import { sendNotification } from "./jobs/subscriptionReminder.js";
 import { Server, Socket } from "socket.io";
+import { errorHandler } from "./middlewares/prismaErrorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -43,6 +44,8 @@ app.use("/api/plans", planRouter);
 app.use("/api/subscriptions", subcriptionRouter);
 app.use("/api/verify-payment", verifyPaymentRouter);
 app.use("/api/notifications", notificationRouter);
+
+app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
