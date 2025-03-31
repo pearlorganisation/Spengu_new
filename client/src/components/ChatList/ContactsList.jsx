@@ -104,7 +104,7 @@ function ContactsList() {
   const [allContacts, setAllContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchContacts, setSearchContacts] = useState([]);
-  const [{}, dispatch] = useStateProvider();
+  const [{ userInfo }, dispatch] = useStateProvider();
 
   useEffect(() => {
     if (searchTerm.length) {
@@ -125,7 +125,7 @@ function ContactsList() {
       try {
         const {
           data: { users },
-        } = await axios.get(GET_ALL_CONTACTS);
+        } = await axios.get(`${GET_ALL_CONTACTS}/${userInfo.id}`);
         setAllContacts(users);
         setSearchContacts(users);
       } catch (err) {
