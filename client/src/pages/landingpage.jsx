@@ -370,7 +370,7 @@ function LandingPage() {
 
   return (
     <div className="relative isolate overflow-hidden bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-1 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-6xl lg:mx-0">
           <h4 className="text-2xl font-semibold tracking-tight text-white sm:text-2xl">
             आओ, घर बैठे इंग्लिश बोलना सीखें!{" "}
@@ -406,7 +406,7 @@ function LandingPage() {
           </dl>
         </div>
 
-        <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg">
+        <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg mt-4">
           <h1 className="text-xl font-semibold text-indigo-900 mb-6">
             Plan Details
           </h1>
@@ -456,7 +456,7 @@ function LandingPage() {
 
                 <div className="flex-grow">
                   <p className="text-sm font-medium text-gray-800">
-                    90 Days - English Speaking Course
+                    English Speaking
                   </p>
                 </div>
 
