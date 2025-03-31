@@ -263,5 +263,3 @@ function Main() {
 }
 
 export default Main;
-
-//          div       grid sm:grid-cols-[50%_50%] md:grid-cols-main lg:grid-cols-main h-screen w-screen max-h-screen max-w-full

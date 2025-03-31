@@ -24,7 +24,6 @@ const products = [
   {
     id: 1,
     name: "Online Chatting",
-    // href: "/onboarding",
     href: "/",
     price: "",
     imageSrc: "/avatars/chat.jpg",
@@ -33,7 +32,7 @@ const products = [
   {
     id: 2,
     name: "Online One on One Calling",
-    // href: "/onboarding",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/calling.avif",
@@ -42,7 +41,7 @@ const products = [
   {
     id: 3,
     name: "English Speaking & Novel Books PDF",
-    // href: "/novelpdf",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/novel.jpg",
@@ -51,7 +50,7 @@ const products = [
   {
     id: 4,
     name: "English News for up to date",
-    // href: "https://www.firstpost.com/shorts/",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/news.jpg",
@@ -60,7 +59,7 @@ const products = [
   {
     id: 5,
     name: "English Learning Games",
-    // href: "/englishquizz",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/games.jpg",
@@ -77,7 +76,7 @@ const products = [
   {
     id: 6,
     name: "Interview Practice Excersie Notes",
-    // href: "/interview",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/interview.jpg",
@@ -86,7 +85,7 @@ const products = [
   {
     id: 7,
     name: "English Learning For Kids",
-    // href: "/englishkids",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/kids1.jpg",
@@ -95,7 +94,7 @@ const products = [
   {
     id: 8,
     name: "1000+ Daily Use Sentences",
-    // href: "/dailyusesentences",
+
     href: "/",
     price: "",
     imageSrc: "/avatars/daily use sentences.jpg",
@@ -406,6 +405,92 @@ function LandingPage() {
             ))}
           </dl>
         </div>
+
+        <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg">
+          <h1 className="text-xl font-semibold text-indigo-900 mb-6">
+            Plan Details
+          </h1>
+
+          <div>
+            <div className="flex justify-between text-sm font-medium text-gray-700 mb-2">
+              <span>Product</span>
+              <span>Subtotal</span>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 py-4">
+              <div className="flex items-start">
+                <button className="text-gray-400 hover:text-gray-600 mr-2 mt-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+
+                <div className="flex-shrink-0 mr-3">
+                  <div className="w-10 h-10 rounded overflow-hidden flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-orange-400 via-yellow-400 to-green-400 flex items-center justify-center p-1">
+                      <div className="text-center leading-none">
+                        <div className="text-[7px] font-bold text-white">
+                          Spoken
+                        </div>
+                        <div className="text-[9px] font-bold text-white">
+                          English
+                        </div>
+                        <div className="text-[8px] font-bold text-white">
+                          Guru
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex-grow">
+                  <p className="text-sm font-medium text-gray-800">
+                    90 Days - English Speaking Course
+                  </p>
+                </div>
+
+                <div className="flex items-center text-right">
+                  <p className="text-sm text-gray-800 mr-1">×</p>
+                  <p className="text-sm text-gray-800 mr-2">1</p>
+                  <p className="text-sm font-medium text-gray-800">₹199</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 py-3">
+              <div className="flex justify-between text-sm">
+                <span className="font-medium text-gray-700">Subtotal</span>
+                <span className="font-medium text-gray-800">₹199</span>
+              </div>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 py-3">
+              <div className="flex justify-between text-sm">
+                <span className="font-medium text-gray-700">18% GST</span>
+                <span className="font-medium text-gray-800">₹35.50</span>
+              </div>
+            </div>
+
+            <div className="border-t border-dashed border-gray-300 py-3">
+              <div className="flex justify-between">
+                <span className="font-semibold text-gray-800">Total</span>
+                <span className="font-semibold text-gray-800">₹234.50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="flex justify-center mt-3">
           {userSubscription?.length > 0 &&
           userSubscription[0]?.status == "ACTIVE" ? (
@@ -632,6 +717,7 @@ function LandingPage() {
             </div>
           </div>
         </div>
+
         <div className="flex justify-center mt-3">
           <button class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup">
             Join Now
