@@ -135,7 +135,6 @@ function Main() {
       });
 
       socket.current.on("voice-call-rejected", () => {
-        console.log("caller voice call rejection");
         dispatch({
           type: reducerCases.END_CALL,
         });
