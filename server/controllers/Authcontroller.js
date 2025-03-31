@@ -57,7 +57,11 @@ export const onBoardUser = asyncHandler(async (req, res, next) => {
 export const getAllUsers = async (req, res, next) => {
   try {
     const prisma = getPrismaInstance();
+    const { userId } = req.params;
     const users = await prisma.user.findMany({
+      where: {
+        id: { not: parseInt(userId) }, // Exclude logged-in user
+      },
       orderBy: { name: "asc" },
       select: {
         id: true,
@@ -68,7 +72,6 @@ export const getAllUsers = async (req, res, next) => {
         mobileNumber: true,
       },
     });
-    console.log("get all users", users);
     const usersGroupByInitialLetter = {};
 
     users.forEach((user) => {
