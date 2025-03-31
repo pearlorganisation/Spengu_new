@@ -59,13 +59,13 @@ const Room = ({ data }) => {
       onLeaveRoom: () => {
         console.log("Users onLeaveRoom !!");
         zc.hangUp();
-        window.location.replace("/");
+        window.location.replace("/main");
       },
       onUserLeave: (users) => {
         console.log("Users onUserLeave !!", users);
         socket.current.emit("hangup-user-call", users?.[0]);
         zc.hangUp();
-        window.location.replace("/");
+        window.location.replace("/main");
       },
       onCallInvitationEnded: () => {
         if (zcRef.current) {
