@@ -32,8 +32,6 @@ const Room = ({ data }) => {
       }
     };
   }, [socket, router]);
-  console.log("App ID:", process.env.NEXT_PUBLIC_ZEGO_APP_ID);
-  console.log("Server Secret:", process.env.NEXT_PUBLIC_ZEGO_SERVER_SECRET);
 
   const myMeet = async (element) => {
     if (!element || zcRef.current) return; // Avoid reinitialization
@@ -53,7 +51,10 @@ const Room = ({ data }) => {
 
     zc.joinRoom({
       container: element,
-      scenario: { mode: ZegoUIKitPrebuilt.LiveStreaming },
+      scenario: {
+        mode: ZegoUIKitPrebuilt.LiveStreaming,
+        config: { role: "Cohost" },
+      },
       onJoinRoom: () => console.log("Someone Joined"),
       onLeaveRoom: () => {
         console.log("Users onLeaveRoom !!");
@@ -77,8 +78,6 @@ const Room = ({ data }) => {
       turnOnMicrophoneWhenJoining: false, //By default enabled
       showMyCameraToggleButton: false,
     });
-
-    console.log("zc", zc);
   };
 
   return <div ref={myMeet}></div>;
