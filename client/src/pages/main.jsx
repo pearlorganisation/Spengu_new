@@ -147,7 +147,7 @@ function Main() {
         dispatch({
           type: reducerCases.END_CALL,
         });
-        router.push("/");
+        router.push("/main");
       });
 
       socket.current.on("video-call-rejected", () => {
