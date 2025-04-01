@@ -227,6 +227,12 @@ function LandingPage() {
   const [userData, setUserData] = useState(null);
   const router = useRouter();
 
+  const mappa =
+    typeof window !== "undefined" ? localStorage.getItem("userInfo") : null;
+  const userInfo2 = mappa ? JSON.parse(mappa) : null;
+
+  console.log("User info 2", userInfo2);
+
   // const user =
   //   typeof window !== "undefined" ? localStorage.getItem("user") : null;
 
@@ -259,6 +265,23 @@ function LandingPage() {
   const [userSubscription, setUserSubscription] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   const getPlans = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.get(GET_ALL_PLANS);
+  //       console.log("Response for Fetching plans", response?.data?.data);
+  //       setPlans(response?.data?.data);
+
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log("Error fetching plans", error);
+  //     }
+  //   };
+
+  //   getPlans();
+  // }, []);
+
   useEffect(() => {
     const getPlans = async () => {
       try {
@@ -266,15 +289,39 @@ function LandingPage() {
         const response = await axios.get(GET_ALL_PLANS);
         console.log("Response for Fetching plans", response?.data?.data);
         setPlans(response?.data?.data);
-
-        setLoading(false);
       } catch (error) {
         console.log("Error fetching plans", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     getPlans();
   }, []);
+
+  // useEffect(() => {
+  //   const getUserSubscription = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.get(
+  //         `${GET_USER_SUBSCRIPTIONS}/${userInfo?.id}`
+  //       );
+  //       console.log(
+  //         "Response for Fetching user subscription ",
+  //         response?.data?.data
+  //       );
+  //       setUserSubscription(response?.data?.data);
+
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log("Error fetching user subscription", error);
+  //     }
+  //   };
+
+  //   if (userInfo?.id) {
+  //     getUserSubscription();
+  //   }
+  // }, [userInfo?.id]);
 
   useEffect(() => {
     const getUserSubscription = async () => {
@@ -288,23 +335,34 @@ function LandingPage() {
           response?.data?.data
         );
         setUserSubscription(response?.data?.data);
-
-        setLoading(false);
       } catch (error) {
         console.log("Error fetching user subscription", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     if (userInfo?.id) {
       getUserSubscription();
     }
-  }, []);
+  }, [userInfo?.id]);
 
   console.log(userSubscription, "userSubscription");
 
   const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+
+  if (!razorpayKey) {
+    console.error("Razorpay Key is missing! Check your .env file.");
+  }
   // console.log("key---- ", razorpayKey);
   const handleSubscription = async ({ planId }) => {
+    console.log("User Info before handling subscription:", userInfo);
+
+    // if (!userInfo || !userInfo.id) {
+    //   toast.error("Please wait, loading user details...");
+    //   return;
+    // }
+
     if (!userInfo) {
       router.push("/login");
       return;
@@ -343,6 +401,7 @@ function LandingPage() {
             }, 2000);
           } catch (error) {
             console.log(error, "Error 123456");
+            toast.error("Payment verification failed. Please contact support.");
           }
         },
         prefill: {
@@ -361,10 +420,13 @@ function LandingPage() {
 
       rzp.on("payment.failed", function (response) {
         console.error("Payment Failed:", response.error);
-        alert("Payment Failed");
+        toast.error("Payment Failed. Please try again.", {
+          position: "top-center",
+        });
       });
     } catch (error) {
       console.error("Error initiating subscription:", error);
+      toast.error("Subscription initiation failed. Please try again.");
     }
   };
 

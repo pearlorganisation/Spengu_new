@@ -17,9 +17,9 @@ function login() {
 
   console.log(userInfo, "user info login");
 
-  // useEffect(() => {
-  //   if (userInfo?.id && !newUser) router.push("/");
-  // }, [userInfo, newUser]);
+  useEffect(() => {
+    if (userInfo?.id && !newUser) router.push("/main");
+  }, [userInfo, newUser]);
 
   const handleLogin = async () => {
     const provider = new GoogleAuthProvider();

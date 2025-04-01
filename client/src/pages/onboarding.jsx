@@ -24,7 +24,14 @@ function onboarding() {
 
   useEffect(() => {
     if (!newUser && !userInfo?.email) router.push("/login");
-    else if (!newUser && userInfo?.email) router.push("/main");
+    else if (
+      !newUser &&
+      userInfo?.email &&
+      userInfo?.subcsriptions?.length === 0
+    )
+      router.push("/landingpage");
+    else if (!newUser && userInfo?.email && userInfo?.subcsriptions?.length > 0)
+      router.push("/main");
   }, [newUser, userInfo, router]);
 
   const onboardUserHandler = async () => {
