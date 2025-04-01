@@ -14,7 +14,7 @@ export const checkUser = async (req, res, next) => {
     const prisma = getPrismaInstance();
     const user = await prisma.user.findUnique({
       where: { email },
-      include: { subscriptions: true },
+      include: { subscriptions: true, notifications: true },
     });
     if (!user) {
       return res.json({ msg: "User not found", status: false });
