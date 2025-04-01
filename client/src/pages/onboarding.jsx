@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import spengu from "../../public/avatars/spoken_english_guru.jpg";
@@ -9,6 +9,7 @@ import defaultAvtar from "../../public/avatars/default_avatar.png";
 import { ONBOARD_USER_ROUTE } from "@/utils/ApiRoutes";
 import { useRouter } from "next/router";
 import { reducerCases } from "@/context/constans";
+import { toast } from "react-toastify";
 
 function onboarding() {
   const router = useRouter();
@@ -21,10 +22,10 @@ function onboarding() {
   const [mobileNumber, setMobileNumber] = useState("");
   const [image, setImage] = useState(defaultAvtar);
 
-  // useEffect(() => {
-  //   if (!newUser && !userInfo?.email) router.push("/login");
-  //   else if (!newUser && userInfo?.email) router.push("/");
-  // }, [newUser, userInfo, router]);
+  useEffect(() => {
+    if (!newUser && !userInfo?.email) router.push("/login");
+    else if (!newUser && userInfo?.email) router.push("/main");
+  }, [newUser, userInfo, router]);
 
   const onboardUserHandler = async () => {
     if (validateDetails()) {
@@ -54,6 +55,14 @@ function onboarding() {
         }
       } catch (err) {
         console.log(err);
+        toast.error(err, "meri error");
+        if (err.response) {
+          toast.error(err.response.data.message);
+        } else {
+          toast.error("Something went wrong, please try again later.");
+        }
+        console.log(err.response.data.message, "error message");
+        console.log(err.response.status, "error status");
       }
     }
   };
