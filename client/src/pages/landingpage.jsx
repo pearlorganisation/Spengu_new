@@ -14,6 +14,7 @@ import { useStateProvider } from "@/context/StateContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import {
+  CHECK_USER_ROUTE,
   GET_ALL_PLANS,
   GET_USER_SUBSCRIPTIONS,
   SUBSCRIPTIONS_ROUTE,
@@ -225,6 +226,8 @@ function LandingPage() {
     }
   }, []);
   const [userData, setUserData] = useState(null);
+
+  const [checkMyUser, setCheckMyUser] = useState(null);
   const router = useRouter();
 
   const mappa =
@@ -299,30 +302,6 @@ function LandingPage() {
     getPlans();
   }, []);
 
-  // useEffect(() => {
-  //   const getUserSubscription = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.get(
-  //         `${GET_USER_SUBSCRIPTIONS}/${userInfo?.id}`
-  //       );
-  //       console.log(
-  //         "Response for Fetching user subscription ",
-  //         response?.data?.data
-  //       );
-  //       setUserSubscription(response?.data?.data);
-
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log("Error fetching user subscription", error);
-  //     }
-  //   };
-
-  //   if (userInfo?.id) {
-  //     getUserSubscription();
-  //   }
-  // }, [userInfo?.id]);
-
   useEffect(() => {
     const getUserSubscription = async () => {
       try {
@@ -347,7 +326,39 @@ function LandingPage() {
     }
   }, [userInfo?.id]);
 
+  useEffect(() => {
+    const getUserCheck = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post(`${CHECK_USER_ROUTE}`, {
+          email: userInfo2?.email,
+        });
+        console.log("Response for Check user ", response?.data?.data);
+        setCheckMyUser(response?.data?.data);
+      } catch (error) {
+        console.log("Error fetching check user API", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getUserCheck();
+  }, []);
+
   console.log(userSubscription, "userSubscription");
+
+  console.log("checkMyUser", checkMyUser);
+
+  console.log(checkMyUser?.subscriptions, "checkMyUser data");
+
+  useEffect(() => {
+    if (
+      checkMyUser?.subscriptions?.length > 0 &&
+      checkMyUser?.subscriptions[0]?.status == "ACTIVE"
+    ) {
+      router.push("/main");
+    }
+  }, [checkMyUser]);
 
   const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 
