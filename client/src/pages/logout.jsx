@@ -13,6 +13,7 @@ function logout() {
     dispatch({ type: reducerCases.SET_USER_INFO, userInfo: undefined });
     console.log("Shubham is here");
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("user");
     signOut(firebaseAuth);
     router.push("/login");
   }, [dispatch]);

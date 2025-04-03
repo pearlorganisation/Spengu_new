@@ -121,6 +121,7 @@ function Main() {
     }
   }, [userInfo]);
   const getUserCheck = async () => {
+    if (parsedUserInfo?.email == undefined) return;
     console.log("Check user API called");
     console.log(parsedUserInfo?.email, "user email in check user");
     try {
