@@ -123,32 +123,32 @@ function Main() {
     }
   }, [userInfo]);
 
-  useEffect(() => {
-    if (!parsedUserInfo?.email) return;
-    const getUserCheck = async () => {
-      console.log("Check user API called");
-      console.log(parsedUserInfo?.email, "user email in check user");
-      try {
-        setLoading(true);
-        const response = await axios.post(`${CHECK_USER_ROUTE}`, {
-          email: parsedUserInfo?.email,
-        });
+  // useEffect(() => {
+  //   if (!parsedUserInfo?.email) return;
+  //   const getUserCheck = async () => {
+  //     console.log("Check user API called");
+  //     console.log(parsedUserInfo?.email, "user email in check user");
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.post(`${CHECK_USER_ROUTE}`, {
+  //         email: parsedUserInfo?.email,
+  //       });
 
-        console.log(response?.data, "Check user response 12345678");
-        console.log("Response for Check user ", response?.data?.data);
-        setCheckMyUser(response?.data?.data);
-      } catch (error) {
-        console.log("Error fetching check user API", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       console.log(response?.data, "Check user response 12345678");
+  //       console.log("Response for Check user ", response?.data?.data);
+  //       setCheckMyUser(response?.data?.data);
+  //     } catch (error) {
+  //       console.log("Error fetching check user API", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    getUserCheck();
-    // if (userInfo?.email) {
+  //   getUserCheck();
+  //   // if (userInfo?.email) {
 
-    // }
-  }, []);
+  //   // }
+  // }, []);
 
   // useEffect(() => {
   //   console.log("in effect userInfo: ", userInfo); // current user info {email, id, name, profileImage, status}
