@@ -46,9 +46,7 @@ function Main() {
   const [redirectLogin, setRedirectLogin] = useState(false);
   const [socketEvent, setSocketEvent] = useState(false);
   const socket = useRef();
-  const roter = useRouter();
 
-  const [checkMyUser, setCheckMyUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // const [notifications, setNotifications] = useState([]);
@@ -122,33 +120,39 @@ function Main() {
       dispatch({ type: reducerCases.SET_SOCKET, socket });
     }
   }, [userInfo]);
+  const getUserCheck = async () => {
+    console.log("Check user API called");
+    console.log(parsedUserInfo?.email, "user email in check user");
+    try {
+      setLoading(true);
+      const response = await axios.post(`${CHECK_USER_ROUTE}`, {
+        email: parsedUserInfo?.email,
+      });
 
-  // useEffect(() => {
-  //   if (!parsedUserInfo?.email) return;
-  //   const getUserCheck = async () => {
-  //     console.log("Check user API called");
-  //     console.log(parsedUserInfo?.email, "user email in check user");
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.post(`${CHECK_USER_ROUTE}`, {
-  //         email: parsedUserInfo?.email,
-  //       });
+      console.log(response?.data, "Check user response 12345678");
+      console.log("Response for Check user ", response?.data?.data);
 
-  //       console.log(response?.data, "Check user response 12345678");
-  //       console.log("Response for Check user ", response?.data?.data);
-  //       setCheckMyUser(response?.data?.data);
-  //     } catch (error) {
-  //       console.log("Error fetching check user API", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+      if (response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED") {
+        localStorage.clear();
+        router.push("/");
+      }
 
-  //   getUserCheck();
-  //   // if (userInfo?.email) {
+      // setCheckMyUser(response?.data?.data);
+    } catch (error) {
+      console.log("Error fetching check user API", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //   // }
-  // }, []);
+  useEffect(() => {
+    // if (!parsedUserInfo?.email) return;
+
+    getUserCheck();
+    // if (userInfo?.email) {
+
+    // }
+  }, []);
 
   // useEffect(() => {
   //   console.log("in effect userInfo: ", userInfo); // current user info {email, id, name, profileImage, status}
@@ -176,27 +180,27 @@ function Main() {
   //   getUserCheck();
   // }, []);
 
-  useEffect(() => {
-    console.log("Effect Triggered: ", parsedUserInfo);
-  }, [parsedUserInfo, userInfo]);
+  // useEffect(() => {
+  //   console.log("Effect Triggered: ", parsedUserInfo);
+  // }, [parsedUserInfo, userInfo]);
 
-  console.log("Main Page check user: ", checkMyUser);
+  // console.log("Main Page check user: ", checkMyUser);
 
-  useEffect(() => {
-    if (checkMyUser) {
-      console.log("Checking subscription status:", checkMyUser);
-      if (
-        !checkMyUser?.subcsriptions ||
-        checkMyUser?.subcsriptions?.length === 0 ||
-        checkMyUser?.subcsriptions?.status === "EXPIRED"
-      ) {
-        toast.error("Your subscription has expired. Please renew to continue.");
-        console.log("Navigating to landing page");
+  // useEffect(() => {
+  //   if (checkMyUser) {
+  //     console.log("Checking subscription status:", checkMyUser);
+  //     if (
+  //       !checkMyUser?.subcsriptions ||
+  //       checkMyUser?.subcsriptions?.length === 0 ||
+  //       checkMyUser?.subcsriptions?.status === "EXPIRED"
+  //     ) {
+  //       toast.error("Your subscription has expired. Please renew to continue.");
+  //       console.log("Navigating to landing page");
 
-        setTimeout(() => router.push("/landingpage"), 100);
-      }
-    }
-  }, [checkMyUser]);
+  //       setTimeout(() => router.push("/landingpage"), 100);
+  //     }
+  //   }
+  // }, [checkMyUser]);
 
   useEffect(() => {
     if (socket.current && !socketEvent) {
