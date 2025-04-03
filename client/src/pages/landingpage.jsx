@@ -342,7 +342,9 @@ function LandingPage() {
       }
     };
 
-    getUserCheck();
+    if (userInfo2?.email) {
+      getUserCheck();
+    }
   }, []);
 
   console.log(userSubscription, "userSubscription");
@@ -352,11 +354,18 @@ function LandingPage() {
   console.log(checkMyUser?.subscriptions, "checkMyUser data");
 
   useEffect(() => {
-    if (
-      checkMyUser?.subscriptions?.length > 0 &&
-      checkMyUser?.subscriptions[0]?.status == "ACTIVE"
-    ) {
-      router.push("/main");
+    console.log("userInfo2=----------------: ", userInfo2);
+    if (userInfo2 !== null) {
+      if (
+        checkMyUser?.subscriptions?.length > 0 &&
+        checkMyUser?.subscriptions[0]?.status == "ACTIVE"
+      ) {
+        router.push("/main");
+      } else {
+        console.log("User is not subscribed or has no active subscription.");
+
+        toast.error("Please subscribe to access the main features.");
+      }
     }
   }, [checkMyUser]);
 

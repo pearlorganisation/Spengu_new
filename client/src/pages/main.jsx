@@ -48,6 +48,9 @@ function Main() {
   const socket = useRef();
   const roter = useRouter();
 
+  const [checkMyUser, setCheckMyUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   // const [notifications, setNotifications] = useState([]);
 
   // if (!isUserLoggedIn) {
@@ -56,6 +59,10 @@ function Main() {
   //   }, []);
   // }
 
+  const userInfo2 =
+    typeof window !== "undefined" ? localStorage.getItem("userInfo") : null;
+  const parsedUserInfo = userInfo2 ? JSON.parse(userInfo2) : null;
+  console.log("Parsed user info: ", parsedUserInfo);
   useEffect(() => {
     if (redirectLogin) router.push("/login");
   }, [redirectLogin]);
@@ -115,6 +122,81 @@ function Main() {
       dispatch({ type: reducerCases.SET_SOCKET, socket });
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    if (!parsedUserInfo?.email) return;
+    const getUserCheck = async () => {
+      console.log("Check user API called");
+      console.log(parsedUserInfo?.email, "user email in check user");
+      try {
+        setLoading(true);
+        const response = await axios.post(`${CHECK_USER_ROUTE}`, {
+          email: parsedUserInfo?.email,
+        });
+
+        console.log(response?.data, "Check user response 12345678");
+        console.log("Response for Check user ", response?.data?.data);
+        setCheckMyUser(response?.data?.data);
+      } catch (error) {
+        console.log("Error fetching check user API", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getUserCheck();
+    // if (userInfo?.email) {
+
+    // }
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("in effect userInfo: ", userInfo); // current user info {email, id, name, profileImage, status}
+  //   if (!parsedUserInfo?.email) return; // Avoid calling API if email is undefined
+
+  //   const getUserCheck = async () => {
+  //     console.log("Check user API called");
+  //     console.log(parsedUserInfo?.email, "user email in check user");
+  //     try {
+  //       setLoading(true);
+  //       const response = await axios.post(`${CHECK_USER_ROUTE}`, {
+  //         email: parsedUserInfo?.email,
+  //       });
+
+  //       console.log(response?.data, "Check user response 12345678");
+  //       console.log("Response for Check user ", response?.data?.data);
+  //       setCheckMyUser(response?.data?.data);
+  //     } catch (error) {
+  //       console.log("Error fetching check user API", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   getUserCheck();
+  // }, []);
+
+  useEffect(() => {
+    console.log("Effect Triggered: ", parsedUserInfo);
+  }, [parsedUserInfo, userInfo]);
+
+  console.log("Main Page check user: ", checkMyUser);
+
+  useEffect(() => {
+    if (checkMyUser) {
+      console.log("Checking subscription status:", checkMyUser);
+      if (
+        !checkMyUser?.subcsriptions ||
+        checkMyUser?.subcsriptions?.length === 0 ||
+        checkMyUser?.subcsriptions?.status === "EXPIRED"
+      ) {
+        toast.error("Your subscription has expired. Please renew to continue.");
+        console.log("Navigating to landing page");
+
+        setTimeout(() => router.push("/landingpage"), 100);
+      }
+    }
+  }, [checkMyUser]);
 
   useEffect(() => {
     if (socket.current && !socketEvent) {
