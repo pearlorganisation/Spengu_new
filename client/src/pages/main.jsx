@@ -204,7 +204,7 @@ function Main() {
   // }, [checkMyUser]);
 
   useEffect(() => {
-    if (socket.current && !socketEvent) {
+    if (socket.current) {
       socket.current.on("msg-recieve", (data) => {
         dispatch({
           type: reducerCases.ADD_MESSAGE,
@@ -216,6 +216,9 @@ function Main() {
 
       socket.current.on("incoming-voice-call", ({ from, roomId, callType }) => {
         //caller id in from
+
+        console.log("from incoming voice call");
+        console.log("from incoming voice call", from);
         dispatch({
           type: reducerCases.SET_INCOMING_VOICE_CALL,
           incomingVoiceCall: { ...from, roomId, callType },

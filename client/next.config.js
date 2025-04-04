@@ -4,7 +4,8 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_ZEGO_APP_ID: "370893850",
     NEXT_PUBLIC_ZEGO_SERVER_SECRET: "2064a6f292e4e81b1678031feb99fb84",
-    // NEXT_PUBLIC_ZEGO_SERVER_URL: "wss://webliveroom698471575-api.coolzcloud.com/ws",
+    // NEXT_PUBLIC_ZEGO_SERVER_URL:
+    // "wss://webliveroom698471575-api.coolzcloud.com/ws",
   },
   images: {
     domains: ["localhost"],
