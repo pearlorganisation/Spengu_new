@@ -61,14 +61,14 @@ function ChatList() {
       {pageType === "default" && (
         <>
           {/* Mobile layout - Show contacts if no chat is open */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             {!currentChatUser ? <><ChatListHeader />
             <SearchBar />
             <List /></> : <MobileChat />}
           </div>
 
           {/* Desktop layout */}
-          <div className="hidden lg:flex flex-col">
+          <div className="hidden md:flex flex-col">
             <ChatListHeader />
             <SearchBar />
             <List />

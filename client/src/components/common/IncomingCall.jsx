@@ -37,7 +37,7 @@ function IncomingCall() {
     dispatch({ type: reducerCases.END_CALL });
   };
   return (
-    <div className="h-24 w-80 fixed top-8 mb-0 right-6 z-50 rounded-sm flex gap-5 items-center justify-start p-4 bg-conversation-panel-background text-white drop-shadow-2xl border-icon-green border-2 py-14">
+    <div className="h-14 w-60 rounded-md md:h-24 md:w-80 fixed top-2 right-2 md:top-8 mb-0 md:right-6 z-50 md:rounded-sm flex gap-5 items-center justify-start p-4 bg-conversation-panel-background text-white drop-shadow-2xl border-icon-green border-2 py-14">
       <div>
         <Image
           src={incomingVoiceCall.profilePicture}
@@ -48,17 +48,17 @@ function IncomingCall() {
         />
       </div>
       <div>
-        <div>{incomingVoiceCall.name}</div>
-        <div className="text-xs">Incoming Voice Call</div>
+        <div className="text-base sm:text-md">{incomingVoiceCall.name}</div>
+        <div className="text-base md:text-xs">Incoming Voice Call</div>
         <div className="flex gap-2 mt-2">
           <button
-            className="bg-red-500 p-1 px-3 text-sm rounded-full"
+            className="bg-red-500 p-0.5 sm:p-1 px-3 text-base md:text-sm rounded-full"
             onClick={rejectCall}
           >
             Reject
           </button>
           <button
-            className="bg-green-500 p-1 px-3 text-sm rounded-full"
+            className="bg-green-500 p-0.5 sm:p-1 px-2 md:px-3 text-base md:text-sm rounded-full"
             onClick={() => {
               acceptCall(), router.push("/voiceCall");
             }}

@@ -268,22 +268,6 @@ function LandingPage() {
   const [userSubscription, setUserSubscription] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const getPlans = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.get(GET_ALL_PLANS);
-  //       console.log("Response for Fetching plans", response?.data?.data);
-  //       setPlans(response?.data?.data);
-
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log("Error fetching plans", error);
-  //     }
-  //   };
-
-  //   getPlans();
-  // }, []);
 
   useEffect(() => {
     const getPlans = async () => {

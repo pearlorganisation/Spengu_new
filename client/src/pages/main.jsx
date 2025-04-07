@@ -1,23 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-// import ChatList from "./Chatlist/ChatList";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "@/utils/FirebaseConfig";
 import axios from "axios";
 import { CHECK_USER_ROUTE, GET_MESSAGES_ROUTE } from "@/utils/ApiRoutes";
 import { useStateProvider } from "@/context/StateContext";
 import { reducerCases } from "@/context/constans";
-// import Chat from "./Chat/Chat";
-// import Empty from "./Empty";
+
 import { io } from "socket.io-client";
 import { HOST } from "@/utils/ApiRoutes";
-// import SearchMessage from "./Chat/SearchMessage";
 
-// import VideoCall from "./Call/VideoCall";
-// import VoiceCall from "./Call/VoiceCall";
-// import IncomingVideoCall from "./common/IncomingVideoCall";
-// import IncomingCall from "./common/IncomingCall";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import ChatList from "@/components/ChatList/ChatList";
@@ -103,7 +96,11 @@ function Main() {
 
     if (userInfo) {
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      socket.current = io(HOST);
+      socket.current = io(HOST,{
+        query:{
+          userId:userInfo.id
+        }
+      });
       socket.current.on("connect", () => {
         console.log("SOCKET CONNECTED: ", socket.current.id); // ✅ Now logs the correct socket ID
         socket.current.emit("add-user", userInfo.id);
@@ -155,53 +152,7 @@ function Main() {
     // }
   }, []);
 
-  // useEffect(() => {
-  //   console.log("in effect userInfo: ", userInfo); // current user info {email, id, name, profileImage, status}
-  //   if (!parsedUserInfo?.email) return; // Avoid calling API if email is undefined
 
-  //   const getUserCheck = async () => {
-  //     console.log("Check user API called");
-  //     console.log(parsedUserInfo?.email, "user email in check user");
-  //     try {
-  //       setLoading(true);
-  //       const response = await axios.post(`${CHECK_USER_ROUTE}`, {
-  //         email: parsedUserInfo?.email,
-  //       });
-
-  //       console.log(response?.data, "Check user response 12345678");
-  //       console.log("Response for Check user ", response?.data?.data);
-  //       setCheckMyUser(response?.data?.data);
-  //     } catch (error) {
-  //       console.log("Error fetching check user API", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   getUserCheck();
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("Effect Triggered: ", parsedUserInfo);
-  // }, [parsedUserInfo, userInfo]);
-
-  // console.log("Main Page check user: ", checkMyUser);
-
-  // useEffect(() => {
-  //   if (checkMyUser) {
-  //     console.log("Checking subscription status:", checkMyUser);
-  //     if (
-  //       !checkMyUser?.subcsriptions ||
-  //       checkMyUser?.subcsriptions?.length === 0 ||
-  //       checkMyUser?.subcsriptions?.status === "EXPIRED"
-  //     ) {
-  //       toast.error("Your subscription has expired. Please renew to continue.");
-  //       console.log("Navigating to landing page");
-
-  //       setTimeout(() => router.push("/landingpage"), 100);
-  //     }
-  //   }
-  // }, [checkMyUser]);
 
   useEffect(() => {
     if (socket.current) {
@@ -291,18 +242,7 @@ function Main() {
       setSocketEvent(true);
     }
 
-    // return () => {
-    //   socket.current.off("msg-recieve");
-    //   socket.current.off("incoming-voice-call");
-    //   socket.current.off("incoming-video-call");
-    //   socket.current.off("newNotification");
-    //   socket.current.off("user-busy");
-    //   socket.current.off("outgoing-voice-call");
-    //   socket.current.off("video-call-rejected");
-    //   socket.current.off("voice-call-rejected");
-
-    //   // Remove specific event listener
-    // };
+    
   }, [socket.current]);
 
   useEffect(() => {
@@ -336,9 +276,7 @@ function Main() {
                 messagesSearch ? "" : ""
               }`}
 
-              // className={`flex flex-col w-full h-full ${
-              //   messagesSearch ? "sm:grid sm:grid-cols-[35%_65%]" : ""
-              // }`}
+
             >
               <Chat />
               {messagesSearch && <SearchMessage />}
