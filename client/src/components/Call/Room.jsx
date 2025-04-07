@@ -82,7 +82,7 @@ const Room = ({ data }) => {
     });
   };
 
-  return <div ref={myMeet}></div>;
+  return <div className="h-screen w-screen" ref={myMeet}></div>;
 };
 
 export default Room;
