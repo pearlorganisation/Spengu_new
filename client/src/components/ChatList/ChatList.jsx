@@ -67,7 +67,7 @@ function ChatList() {
           {/* Mobile layout - Show contacts if no chat is open */}
           <div className="md:hidden  ">
             {!currentChatUser ? (
-              <div className="grid  h-screen border-2 border-green-400">
+              <div className="grid  h-screen ">
                 {/* <ChatListHeader />
                 <SearchBar /> */}
                 <div className="flex-none">

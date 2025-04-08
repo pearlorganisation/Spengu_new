@@ -79,6 +79,7 @@ const Room = ({ data }) => {
       showMyCameraToggleButton: false,
       showAudioVideoSettingsButton: false,
       showScreenSharingButton: false,
+      showLeavingView: false,
     });
   };
 
