@@ -19,8 +19,9 @@ function ChatListHeader() {
 
   const showContextMenu = (e) => {
     e.preventDefault();
-    setContextMenuCordinates({ x: e.pageX, y: e.pageY });
-    setIsContextMenuVisible(true);
+
+    setContextMenuCordinates({ x: e.pageX - 80, y: e.pageY + 18 });
+    setIsContextMenuVisible((prev) => !prev);
   };
 
   const contextMenuOptions = [
@@ -37,29 +38,39 @@ function ChatListHeader() {
     dispatch({ type: reducerCases.SET_ALL_CONTACTS_PAGE });
   };
   return (
-    <div className="h-16 px-3 py-3 flex justify-between items-center">
-      <div className="cursor-pointer">
-        <Avtar type="sm" image={userInfo?.profileImage || null} />
+    <div className="h-12 px-1 py-2 md:h-16 md:px-3 md:py-3 flex  justify-between items-center">
+      <div className="flex justify-center items-center  gap-6">
+        <div className="cursor-pointer">
+          <Avtar type="sm" image={userInfo?.profileImage || null} />
+        </div>
+        <div className="flex justify-center items-center  ">
+          <Link
+            href="/showpdf"
+            className="w-full  items-center justify-center p-2 text-center rounded-md bg-orange-50   py-0.1 text-sm font-medium text-black-800 ring-1  ring-inset transition hover:bg-orange-100"
+          >
+            <h1 className="justify-center"> Our Course's</h1>
+          </Link>
+        </div>
       </div>
+
       <div className="flex flex-row  gap-6">
-        <Link
-          href="/showpdf"
-          className="w-full flex items-center justify-center text-center rounded-md bg-orange-50  text-base font-medium text-black-800 ring-1  ring-inset transition hover:bg-orange-100"
-        >
-          <h1 className="items-center justify-center"> Our Course's</h1>
-        </Link>
-        <BsFillChatLeftTextFill
-          className="text-panel-header-icon cursor-pointer text-xl size-12 md:size-12"
-          title="New Chat"
-          onClick={handleAllContactsPage}
-        />
-        <>
-          <BsThreeDotsVertical
-            className="text-panel-header-icon cursor-pointer text-xl size-12 md:size-12"
-            title="Menu"
-            onClick={(e) => showContextMenu(e)}
-            id="context-opener"
+        <div className="flex justify-center items-center">
+          <BsFillChatLeftTextFill
+            className="text-panel-header-icon cursor-pointer text-xl size-6 md:size-6 lg::size-12"
+            title="New Chat"
+            onClick={handleAllContactsPage}
           />
+        </div>
+        <>
+          <div className="flex justify-center   items-center">
+            <BsThreeDotsVertical
+              className="text-panel-header-icon cursor-pointer text-xl size-5 md:size-6 lg:size-8"
+              title="Menu"
+              onClick={(e) => showContextMenu(e)}
+              id="context-opener"
+            />
+          </div>
+
           {isContextMenuVisible && (
             <ContextMenu
               options={contextMenuOptions}

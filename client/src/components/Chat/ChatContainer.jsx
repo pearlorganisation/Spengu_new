@@ -66,12 +66,14 @@ import React from "react";
 import MessageStatus from "../common/MessageStatus";
 import ImageMessage from "./ImageMessage";
 import dynamic from "next/dynamic";
+import MessageBar from "./MessageBar";
 const VoiceMessage = dynamic(() => import("./VoiceMessage"), { ssr: false });
 
 function ChatContainer() {
   const [{ messages, currentChatUser, userInfo }] = useStateProvider();
   return (
-    <div className="min-h-screen  max-h-screen md:h-[800vh]  w-full relative flex-grow overflow-auto custom-scrollbar">
+    // <div className="min-h-screen max-h-screen md:h-[800vh]  w-full relative flex-grow overflow-auto custom-scrollbar">
+    <div className="min-h-screen max-h-screen md:h-[800vh] w-full relative flex-grow overflow-y-auto custom-scrollbar">
       <div className="bg-chat-background bg-fixed h-full w-full opacity-5 fixed left-0 top-0 z-0"></div>
       <div className="mx-10 my-6 relative bottom-0 z-40 left-0">
         <div className="flex w-full">
@@ -85,7 +87,6 @@ function ChatContainer() {
                     : "justify-end"
                 }`}
               >
-                {/* ajgjgfjjjjjjj */}
                 {message.type === "text" && (
                   <div
                     className={`text-white px-2 py-[5px] text-sm rounded-md flex gap-2 items-end max-w-[45%]

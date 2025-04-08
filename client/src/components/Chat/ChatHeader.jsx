@@ -167,7 +167,6 @@ function ChatHeader() {
           <BiArrowBack
             className=" text-2xl text-white cursor-pointer"
             onClick={()=>{
-              console.log("ohoi");
               handleBackClick()
             }}
           />

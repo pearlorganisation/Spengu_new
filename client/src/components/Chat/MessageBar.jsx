@@ -117,7 +117,7 @@ function MessageBar() {
   }, [grabPhoto]);
 
   return (
-    <div className="bg-panel-header-background h-20 px-4 flex items-center gap-6 fixed bottom-0 left-0 right-0 w-full z-50">
+    <div className="bg-panel-header-background h-20 absolute px-4 flex items-center gap-6  bottom-0 left-0 right-0 w-full z-50">
       {!showAudioRecorder && (
         <>
           <div className="flex gap-6 ">

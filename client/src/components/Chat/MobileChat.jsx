@@ -9,15 +9,17 @@ const MobileChat = () => {
   const [{ currentChatUser }] = useStateProvider();
 
   return (
-    <div className="border-10 border-yellow-400">
+    <div className="">
       {/* Show ContactsList when there's no active chat */}
       {!currentChatUser ? (
         <ContactsList />
       ) : (
-        <div className="w-full h-full flex flex-col">
+        <div className="w-full h-full border-2 border-b-orange-400 border-dotted flex flex-col">
           <ChatHeader />
-          <ChatContainer />
-          <MessageBar />
+          <div className="w-full h-[80vh] overflow-y-scroll custom-scrollbar ">
+            <ChatContainer />
+            <MessageBar />
+          </div>
         </div>
       )}
     </div>

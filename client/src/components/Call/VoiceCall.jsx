@@ -24,7 +24,6 @@ function VoiceCall() {
   }, [voiceCall]);
 
   return <Room data={voiceCall} />;
-  // <Container data={voiceCall} />;
 }
 
 export default VoiceCall;
