@@ -38,12 +38,12 @@ function ChatListHeader() {
     dispatch({ type: reducerCases.SET_ALL_CONTACTS_PAGE });
   };
   return (
-    <div className="h-12 px-1 py-2 md:h-16 md:px-3 md:py-3 flex border-2 border-yellow-200 justify-between items-center">
+    <div className="h-12 px-1 py-2 md:h-16 md:px-3 md:py-3 flex  justify-between items-center">
       <div className="flex justify-center items-center  gap-6">
       <div className="cursor-pointer">
         <Avtar type="sm" image={userInfo?.profileImage || null} />
       </div>
-      <div className="flex justify-center items-center  border-2 border-green-400">
+      <div className="flex justify-center items-center  ">
         <Link
           href="/showpdf"
           className="w-full  items-center justify-center p-2 text-center rounded-md bg-orange-50   py-0.1 text-sm font-medium text-black-800 ring-1  ring-inset transition hover:bg-orange-100"
