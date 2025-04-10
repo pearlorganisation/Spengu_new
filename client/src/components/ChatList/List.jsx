@@ -26,7 +26,7 @@ function List() {
     console.log("filteredContacts: ", filteredContacts);
   }, [userInfo]);
   return (
-    <div className="bg-[#111B21] flex-auto overflow-auto border-2 border-dotted border-r-emerald-500 max-h-full h-[80vh] custom-scrollbar">
+    <div className="bg-[#111B21] flex-auto overflow-auto   custom-scrollbar">
       {filteredContacts && filteredContacts.length > 0
         ? filteredContacts.map((contact) => (
             <ChatListItem data={contact} key={contact.id} />

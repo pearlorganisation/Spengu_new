@@ -5,10 +5,10 @@ import MessageBar from "./MessageBar";
 
 function Chat() {
   return (
-    <div className="border-conversation-border border-l relative  bg-conversation-panel-background flex flex-col h-[100vh] z-10">
+    <div className="border-conversation-border grid grid-rows-[8fr_81fr_11fr] border-l relative  bg-conversation-panel-background  h-[100dvh] z-10">
       <ChatHeader />
 
-      <div className=" h-[80vh]  overflow-y-scroll custom-scrollbar">
+      <div className="overflow-y-scroll custom-scrollbar  ">
       <ChatContainer />
 
 
@@ -16,7 +16,7 @@ function Chat() {
       </div>
         
 
-      <div >
+      <div className="">
       <MessageBar />
 
       </div>

@@ -160,7 +160,7 @@ function ChatHeader() {
   };
 
   return (
-    <div className="h-16 px-4 py-3 flex justify-between items-center bg-panel-header-background z-10">
+    <div style={{boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px"}} className="h-16 px-4  py-3 flex w-full justify-between items-center bg-panel-header-background z-10">
       <div className="flex items-center gap-4">
         {/* Back Button - Visible only on small screens when chat is open */}
         {currentChatUser && (
