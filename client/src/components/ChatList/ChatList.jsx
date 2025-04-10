@@ -6,6 +6,7 @@ import { useStateProvider } from "@/context/StateContext";
 import ContactsList from "./ContactsList";
 import MobileChat from "../Chat/MobileChat";
 
+
 function ChatList() {
   const [{ contactsPage, currentChatUser }] = useStateProvider();
   const [pageType, setPageType] = useState("default");
