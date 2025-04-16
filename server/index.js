@@ -14,6 +14,7 @@ import notificationRouter from "./routes/notificationRoutes.js";
 import { sendNotification } from "./jobs/subscriptionReminder.js";
 import { Server, Socket } from "socket.io";
 import { errorHandler } from "./middlewares/prismaErrorHandler.js";
+import { connectToDb } from "./configs/db.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -66,6 +67,8 @@ const io = new Server(server, {
 
 global.onlineUsers = new Map();
 const activeCalls = new Map();
+
+connectToDb();
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
