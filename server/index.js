@@ -27,6 +27,8 @@ app.use(
       "http://localhost:5173",
       "https://sepngu-mern.vercel.app",
       "https://spengu-new.vercel.app",
+      "https://www.speakspokenenglishguru.in",
+      "https://speakspokenenglishguru.in",
     ],
   })
 );
