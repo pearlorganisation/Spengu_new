@@ -12,8 +12,9 @@ function Chat() {
         <ChatContainer />
       </div>
 
-      <div>
+      <div className="">
         <MessageBar />
+        >>>>>>>>> Temporary merge branch 2
       </div>
     </div>
   );

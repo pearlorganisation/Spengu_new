@@ -16,21 +16,14 @@ const MobileChat = () => {
       ) : (
         <div className="w-full h-[100dvh] grid grid-rows-[10fr_79fr_11fr]  ">
           <div className=" flex justify-center items-center px-2 ">
-          <ChatHeader />
-          <div className="w-full h-[80vh] overflow-y-scroll custom-scrollbar ">
-            <ChatContainer />
-            <MessageBar />
-
+            <ChatHeader />
           </div>
           <div className="w-full   overflow-y-scroll custom-scrollbar ">
-          <ChatContainer />
+            <ChatContainer />
           </div>
           <div className="">
-          <MessageBar/>
-
+            <MessageBar />
           </div>
-
-         
         </div>
       )}
     </div>
