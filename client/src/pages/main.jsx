@@ -96,10 +96,10 @@ function Main() {
 
     if (userInfo) {
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      socket.current = io(HOST,{
-        query:{
-          userId:userInfo.id
-        }
+      socket.current = io(HOST, {
+        query: {
+          userId: userInfo.id,
+        },
       });
       socket.current.on("connect", () => {
         console.log("SOCKET CONNECTED: ", socket.current.id); // ✅ Now logs the correct socket ID
@@ -130,6 +130,11 @@ function Main() {
       console.log(response?.data, "Check user response 12345678");
       console.log("Response for Check user ", response?.data?.data);
 
+      if (response?.data?.data?.subscriptions?.length == 0) {
+        localStorage.clear();
+        router.push("/");
+      }
+
       if (response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED") {
         localStorage.clear();
         router.push("/");
@@ -151,8 +156,6 @@ function Main() {
 
     // }
   }, []);
-
-
 
   useEffect(() => {
     if (socket.current) {
@@ -241,8 +244,6 @@ function Main() {
 
       setSocketEvent(true);
     }
-
-    
   }, [socket.current]);
 
   useEffect(() => {
@@ -275,8 +276,6 @@ function Main() {
               className={`hidden md:block flex-col w-full h-full ${
                 messagesSearch ? "" : ""
               }`}
-
-
             >
               <Chat />
               {messagesSearch && <SearchMessage />}
