@@ -65,28 +65,33 @@ function ChatList() {
       {pageType === "default" && (
         <>
           {/* Mobile layout - Show contacts if no chat is open */}
-          <div className="md:hidden  ">
-            {!currentChatUser ? (
-              <div className="grid  h-screen ">
-                {/* <ChatListHeader />
-                <SearchBar /> */}
-                <div className="flex-none">
-                  <ChatListHeader />
-                  <SearchBar />
-                </div>
-                <div className=" overflow-y-scroll custom-scrollbar  ">
-                  <List />
-                </div>
+          {!currentChatUser && (
+            <div className="md:hidden grid grid-rows-[6fr_7fr_88fr] min-h-screen max-h-screen    ">
+              {/* Row 1 */}
+              <div>
+                <ChatListHeader />
               </div>
-            ) : (
-              <div className="">
-                <MobileChat />
+
+              {/* Row 2 */}
+              <div>
+                <SearchBar />
               </div>
-            )}
-          </div>
+
+              {/* Row 3 — scrollable chat list */}
+              <div className=" overflow-y-scroll custom-scrollbar">
+                <List />
+              </div>
+            </div>
+          )}
+
+          {currentChatUser && (
+            <div className="md:hidden">
+              <MobileChat />
+            </div>
+          )}
 
           {/* Desktop layout */}
-          <div className="hidden md:flex flex-col h-[100vh] ">
+          <div className="hidden md:flex flex-col h-[100dvh] ">
             <ChatListHeader />
             <SearchBar />
             <List />

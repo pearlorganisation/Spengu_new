@@ -39,7 +39,7 @@ export default function EnglishKids() {
   ];
 
   return (
-    <div className="h-[100vh] w-full bg-black flex flex-col items-center overflow-auto custom-scrollbar p-4">
+    <div className="h-[100dvh] w-full bg-black flex flex-col items-center overflow-auto custom-scrollbar p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full max-w-5xl">
         {links.map((link, index) => (
           <Link

@@ -14,12 +14,23 @@ const MobileChat = () => {
       {!currentChatUser ? (
         <ContactsList />
       ) : (
-        <div className="w-full h-full  flex flex-col">
+        <div className="w-full h-[100dvh] grid grid-rows-[10fr_79fr_11fr]  ">
+          <div className=" flex justify-center items-center px-2 ">
           <ChatHeader />
           <div className="w-full h-[80vh] overflow-y-scroll custom-scrollbar ">
             <ChatContainer />
             <MessageBar />
+
           </div>
+          <div className="w-full   overflow-y-scroll custom-scrollbar ">
+          <ChatContainer />
+          </div>
+          <div className="">
+          <MessageBar/>
+
+          </div>
+
+         
         </div>
       )}
     </div>

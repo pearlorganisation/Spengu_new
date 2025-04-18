@@ -179,7 +179,7 @@ function Container({ data }) {
   return (
     <div
       className="border-conversation-border border-l w-full bg-conversation-panel-background flex flex-col 
-    h-[100vh] overflow-scroll items-center justify-center text-white"
+    h-[100dvh] overflow-scroll items-center justify-center text-white"
     >
       <div className="flex flex-col gap-3 items-center">
         <span className="text-4xl">{data.name}</span>
