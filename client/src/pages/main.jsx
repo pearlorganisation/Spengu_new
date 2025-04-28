@@ -42,14 +42,6 @@ function Main() {
 
   const [loading, setLoading] = useState(false);
 
-  // const [notifications, setNotifications] = useState([]);
-
-  // if (!isUserLoggedIn) {
-  //   useEffect(() => {
-  //     router.push("/landingpage");
-  //   }, []);
-  // }
-
   const userInfo2 =
     typeof window !== "undefined" ? localStorage.getItem("userInfo") : null;
   const parsedUserInfo = userInfo2 ? JSON.parse(userInfo2) : null;
@@ -96,10 +88,10 @@ function Main() {
 
     if (userInfo) {
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      socket.current = io(HOST,{
-        query:{
-          userId:userInfo.id
-        }
+      socket.current = io(HOST, {
+        query: {
+          userId: userInfo.id,
+        },
       });
       socket.current.on("connect", () => {
         console.log("SOCKET CONNECTED: ", socket.current.id); // ✅ Now logs the correct socket ID
@@ -130,10 +122,16 @@ function Main() {
       console.log(response?.data, "Check user response 12345678");
       console.log("Response for Check user ", response?.data?.data);
 
-      if (response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED") {
+      if (
+        response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED" ||
+        response?.data?.data?.subscriptions?.[0]?.status == "CREATED"
+      ) {
         localStorage.clear();
         router.push("/");
-      }
+      } else
+      {
+        alert("Something is wronghere in getUSerCheck");
+        }
 
       // setCheckMyUser(response?.data?.data);
     } catch (error) {
@@ -151,8 +149,6 @@ function Main() {
 
     // }
   }, []);
-
-
 
   useEffect(() => {
     if (socket.current) {
@@ -241,8 +237,6 @@ function Main() {
 
       setSocketEvent(true);
     }
-
-    
   }, [socket.current]);
 
   useEffect(() => {
@@ -275,8 +269,6 @@ function Main() {
               className={`hidden md:block flex-col w-full h-full ${
                 messagesSearch ? "" : ""
               }`}
-
-
             >
               <Chat />
               {messagesSearch && <SearchMessage />}

@@ -3,6 +3,9 @@ import getPrismaInstance from "../utils/PrismaClient.js";
 
 export const createSubscription = async (req, res) => {
   const { planId, email, userId } = req.body;
+
+  console.log("req.body", req.body);
+
   try {
     const prisma = getPrismaInstance();
 
@@ -11,8 +14,15 @@ export const createSubscription = async (req, res) => {
       where: { userId },
     });
     console.log("existingSubscription", existingSubscription);
+
     if (existingSubscription) {
-      if (new Date(existingSubscription.endDate) < new Date()) {
+      if (existingSubscription.status == "CREATED") {
+        console.log("deleting existing sub now");
+        await prisma.subscription.delete({
+          where: { userId },
+        });
+      } else if (new Date(existingSubscription.endDate) < new Date()) {
+        console.log("deleting expired sub");
         // If subscription is expired, delete it
         await prisma.subscription.delete({
           where: { userId },
@@ -24,6 +34,7 @@ export const createSubscription = async (req, res) => {
         });
       }
     }
+    console.log("razorpay");
     // Create Subscription in Razorpay
     const razorpayResponse = await razorpayInstance.subscriptions.create({
       plan_id: planId,
