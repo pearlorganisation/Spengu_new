@@ -130,12 +130,20 @@ function Main() {
       console.log(response?.data, "Check user response 12345678");
       console.log("Response for Check user ", response?.data?.data);
 
+      if (!response?.data?.data?.subscriptions) {
+        localStorage.clear();
+        router.push("/");
+      }
+
       if (response?.data?.data?.subscriptions?.length == 0) {
         localStorage.clear();
         router.push("/");
       }
 
-      if (response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED") {
+      if (
+        response?.data?.data?.subscriptions?.[0]?.status === "EXPIRED" ||
+        response?.data?.data?.subscriptions?.[0]?.status === "CREATED"
+      ) {
         localStorage.clear();
         router.push("/");
       }
