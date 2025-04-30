@@ -20,6 +20,7 @@ import {
   SUBSCRIPTIONS_ROUTE,
   VERIFY_PAYMENT_ROUTE,
 } from "@/utils/ApiRoutes";
+import Footer from "@/components/Footer";
 
 const products = [
   {
@@ -268,7 +269,6 @@ function LandingPage() {
   const [userSubscription, setUserSubscription] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     const getPlans = async () => {
       try {
@@ -435,414 +435,420 @@ function LandingPage() {
   };
 
   return (
-    <div className="relative isolate overflow-hidden bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto max-w-6xl lg:mx-0">
-          <h4 className="text-2xl font-semibold tracking-tight text-white sm:text-2xl">
-            आओ, घर बैठे इंग्लिश बोलना सीखें!{" "}
-          </h4>
-          <br></br>
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-2xl">
-            अभी जॉइन करे Sale offer!
-          </h2>
-          <br></br>
-          <span className="text-xl font-bold tracking-tight text-white sm:text-xl">
-            Live Web Chat and Calling App
-          </span>
-          <p className="mt-1 text-lg font-medium text-pretty text-white sm:text-xl/8">
-            यह एक लाइव वेब चैट और कॉलिंग ऐप है जहां हम दुनिया भर के उन लोगों से
-            जुड़ने के लिए एक माहौल बनाते हैं जो बेहतर English Fluency के लिए
-            अंग्रेजी सीखना, बात करना, झिझक मिटाना, चैट करना और अंग्रेजी में
-            सुधार करना चाहते हैं। अध्ययनरत छात्र, कामकाजी पेशेवर, गृहिणी इस ऐप
-            का उपयोग दुनिया में कहीं से भी, कभी भी कर सकते हैं। ये काम कुछ इस
-            तरह करता है कि आप रियल टाइम में किसी को अंग्रेजी में मैसेज कर सकते
-            हैं, कॉल कर सकते हैं, वॉयस नोट्स भेज सकते हैं।
-          </p>
-        </div>
-        <div className="mx-auto mt-0 max-w-2xl lg:mx-0 lg:max-w-none">
-          <dl className="mt-1 grid grid-cols-1 gap-8 sm:mt-5 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.name} className="flex flex-col-reverse gap-1">
-                <dt className="text-md font-bold text-gray-300">{stat.name}</dt>
-                <dd className="text-4xl font-semibold tracking-tight text-white">
-                  {stat.value}
-                </dd>
+    <div className="">
+      <div className="relative isolate overflow-hidden bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-6xl lg:mx-0">
+            <h4 className="text-2xl font-semibold tracking-tight text-white sm:text-2xl">
+              आओ, घर बैठे इंग्लिश बोलना सीखें!{" "}
+            </h4>
+            <br></br>
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-2xl">
+              अभी जॉइन करे Sale offer!
+            </h2>
+            <br></br>
+            <span className="text-xl font-bold tracking-tight text-white sm:text-xl">
+              Live Web Chat and Calling App
+            </span>
+            <p className="mt-1 text-lg font-medium text-pretty text-white sm:text-xl/8">
+              यह एक लाइव वेब चैट और कॉलिंग ऐप है जहां हम दुनिया भर के उन लोगों
+              से जुड़ने के लिए एक माहौल बनाते हैं जो बेहतर English Fluency के
+              लिए अंग्रेजी सीखना, बात करना, झिझक मिटाना, चैट करना और अंग्रेजी
+              में सुधार करना चाहते हैं। अध्ययनरत छात्र, कामकाजी पेशेवर, गृहिणी
+              इस ऐप का उपयोग दुनिया में कहीं से भी, कभी भी कर सकते हैं। ये काम
+              कुछ इस तरह करता है कि आप रियल टाइम में किसी को अंग्रेजी में मैसेज
+              कर सकते हैं, कॉल कर सकते हैं, वॉयस नोट्स भेज सकते हैं।
+            </p>
+          </div>
+          <div className="mx-auto mt-0 max-w-2xl lg:mx-0 lg:max-w-none">
+            <dl className="mt-1 grid grid-cols-1 gap-8 sm:mt-5 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat) => (
+                <div key={stat.name} className="flex flex-col-reverse gap-1">
+                  <dt className="text-md font-bold text-gray-300">
+                    {stat.name}
+                  </dt>
+                  <dd className="text-4xl font-semibold tracking-tight text-white">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg mt-4">
+            <h1 className="text-xl font-semibold text-indigo-900 mb-6">
+              Plan Details
+            </h1>
+
+            <div>
+              <div className="flex justify-between text-sm font-medium text-gray-700 mb-2">
+                <span>Product</span>
+                <span>Subtotal</span>
               </div>
-            ))}
-          </dl>
-        </div>
 
-        <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg mt-4">
-          <h1 className="text-xl font-semibold text-indigo-900 mb-6">
-            Plan Details
-          </h1>
+              <div className="border-t border-dashed border-gray-300 py-4">
+                <div className="flex items-start">
+                  <button className="text-gray-400 hover:text-gray-600 mr-2 mt-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
 
-          <div>
-            <div className="flex justify-between text-sm font-medium text-gray-700 mb-2">
-              <span>Product</span>
-              <span>Subtotal</span>
-            </div>
-
-            <div className="border-t border-dashed border-gray-300 py-4">
-              <div className="flex items-start">
-                <button className="text-gray-400 hover:text-gray-600 mr-2 mt-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-
-                <div className="flex-shrink-0 mr-3">
-                  <div className="w-10 h-10 rounded overflow-hidden flex items-center justify-center">
-                    <div className="w-full h-full bg-gradient-to-br from-orange-400 via-yellow-400 to-green-400 flex items-center justify-center p-1">
-                      <div className="text-center leading-none">
-                        <div className="text-[7px] font-bold text-white">
-                          Spoken
-                        </div>
-                        <div className="text-[9px] font-bold text-white">
-                          English
-                        </div>
-                        <div className="text-[8px] font-bold text-white">
-                          Guru
+                  <div className="flex-shrink-0 mr-3">
+                    <div className="w-10 h-10 rounded overflow-hidden flex items-center justify-center">
+                      <div className="w-full h-full bg-gradient-to-br from-orange-400 via-yellow-400 to-green-400 flex items-center justify-center p-1">
+                        <div className="text-center leading-none">
+                          <div className="text-[7px] font-bold text-white">
+                            Spoken
+                          </div>
+                          <div className="text-[9px] font-bold text-white">
+                            English
+                          </div>
+                          <div className="text-[8px] font-bold text-white">
+                            Guru
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex-grow">
-                  <p className="text-sm font-medium text-gray-800">
-                    English Speaking
-                  </p>
-                </div>
+                  <div className="flex-grow">
+                    <p className="text-sm font-medium text-gray-800">
+                      English Speaking
+                    </p>
+                  </div>
 
-                <div className="flex items-center text-right">
-                  <p className="text-sm text-gray-800 mr-1">×</p>
-                  <p className="text-sm text-gray-800 mr-2">1</p>
-                  <p className="text-sm font-medium text-gray-800">₹199</p>
+                  <div className="flex items-center text-right">
+                    <p className="text-sm text-gray-800 mr-1">×</p>
+                    <p className="text-sm text-gray-800 mr-2">1</p>
+                    <p className="text-sm font-medium text-gray-800">₹199</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="border-t border-dashed border-gray-300 py-3">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-gray-700">Subtotal</span>
-                <span className="font-medium text-gray-800">₹199</span>
+              <div className="border-t border-dashed border-gray-300 py-3">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium text-gray-700">Subtotal</span>
+                  <span className="font-medium text-gray-800">₹199</span>
+                </div>
               </div>
-            </div>
 
-            <div className="border-t border-dashed border-gray-300 py-3">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-gray-700">18% GST</span>
-                <span className="font-medium text-gray-800">₹35.50</span>
+              <div className="border-t border-dashed border-gray-300 py-3">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium text-gray-700">18% GST</span>
+                  <span className="font-medium text-gray-800">₹35.50</span>
+                </div>
               </div>
-            </div>
 
-            <div className="border-t border-dashed border-gray-300 py-3">
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-800">Total</span>
-                <span className="font-semibold text-gray-800">₹234.50</span>
+              <div className="border-t border-dashed border-gray-300 py-3">
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-800">Total</span>
+                  <span className="font-semibold text-gray-800">₹234.50</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center mt-3">
-          {userSubscription?.length > 0 &&
-          userSubscription[0]?.status == "ACTIVE" ? (
-            <button className="text-white px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700">
-              {" "}
-              Already Subscribed
-            </button>
-          ) : (
-            <button
-              onClick={() =>
-                handleSubscription({
-                  planId: plans[0]?.planId,
-                })
-              }
-              class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup"
-            >
-              Join Now
-            </button>
-          )}
-        </div>
-      </div>
-      <br></br>
-      <div className="from-emerald-800 to-red-800  w-full min-h-screen text-white">
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-1 lg:max-w-6xl lg:px-1">
-          <h2 className="text-center text-2xl font-semibold text-white">
-            <span className="relative inline-block pb-1">
-              FEATURES
-              <span className="absolute left-0 bottom-0 w-full h-1 bg-orange-500"></span>
-            </span>
-          </h2>
-          <br></br>
-
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
-              <a
-                key={product.id}
-                // href={product.href}
-                className="group"
+          <div className="flex justify-center mt-3">
+            {userSubscription?.length > 0 &&
+            userSubscription[0]?.status == "ACTIVE" ? (
+              <button className="text-white px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700">
+                {" "}
+                Already Subscribed
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  handleSubscription({
+                    planId: plans[0]?.planId,
+                  })
+                }
+                class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup"
               >
-                <img
-                  alt={product.imageAlt}
-                  src={product.imageSrc}
-                  width={100}
-                  className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
-                />
-
-                <h3 className="mt-1 text-md font-semibold text-white-700">
-                  {product.name}
-                </h3>
-                <p className="mt-1 text-md font-bold text-white-900">
-                  {product.price}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-green-300">
-                  {product.imageAlt}
-                </p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="min-h-screen items-center bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-10">
-        <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="text-center text-2xl font-semibold text-white">
-            <span className="relative inline-block pb-1">
-              CHAT, TALK, LEARN, SPEAK & PRACTICE
-              <span className="absolute left-0 bottom-0 w-full h-1 bg-orange-500"></span>
-            </span>
-          </h2>
-          <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-            <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-                <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
-                    Will be I able to speak English fluent from this web app
-                  </p>
-                  <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
-                    यदि आप तीन महीनों के बीच नई चीजें सीखने में 30 से 60 मिनट से
-                    अधिक समय बिताते है तो आप आसानी से Fluent अंग्रेजी बोलने में
-                    सक्षम हो जाएंगे, लेकिन याद रखें कि कड़ी मेहनत के बिना कुछ भी
-                    हासिल करना असंभव है, आपको अपना 100% भी देना होगा।
-                  </p>
-                </div>
-                <div className="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
-                  <Image
-                    src={phone}
-                    className="h-[min(152px,40cqw)] object-cover"
-                    alt="cahtting_phone"
-                  />
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 lg:rounded-l-[2rem]"></div>
-            </div>
-            <div className="relative max-lg:row-start-1">
-              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-                <div className="px-5 pt-5 sm:px-10 sm:pt-10">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-black max-lg:text-center">
-                    How can I join this app?
-                  </p>
-                  <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
-                    इस ऐप से जुड़ने के लिए आपको केवल <b>199/-</b> का मेंबरशिप
-                    प्लान लेना होता है जो कि तीन महीने की वैधता के साथ आता है और
-                    इस ऐप को लॉग इन करना होगा उसके बाद आप इस ऐप के प्रीमियम
-                    सदस्य हैं और आप किसी से भी English चैट पर बात कर सकते हैं या
-                    कॉल पर बात कर सकते हैं।
-                  </p>
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem]"></div>
-            </div>
-            <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-              <div className="absolute inset-px rounded-lg bg-white"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
-                <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
-                    Our upcoming features
-                  </p>
-                  <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
-                    आने वाले महीनों में लाइव चैट और कॉल के साथ-साथ अंग्रेजी
-                    सीखने का बेहतर माहौल बनाने के लिए हम नई सुविधाएँ लेकर आ रहे
-                    हैं जैसे: - ENGLISH AI CHATBOT, ENGLISH NEWS, ENGLISH NOVEL
-                    BOOK PDF, ENGLISH GAMES, ENGLISH MUSIC, ENGLISH SHORT VIDEO
-                    और बहुत कुछ...
-                  </p>
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5"></div>
-            </div>
-            <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-                <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
-                    Keep a few things in mind while talking
-                  </p>
-                  <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
-                    आप किसी से भी चैट या मैसेज कर सकते हैं, आप किसी से भी कॉल पर
-                    बात कर सकते हैं, सुनिश्चित करें और अंग्रेजी में बेहतर प्रवाह
-                    के लिए हमेशा अंग्रेजी में ही बात करने का प्रयास करें। कृपया
-                    बात करते समय अपनी निजी जानकारी किसी के साथ साझा न करें।
-                  </p>
-                </div>
-                <div className="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
-                  <img
-                    className="h-[min(152px,40cqw)] object-cover"
-                    src="https://tailwindui.com/plus-assets/img/component-images/bento-03-security.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-            </div>
+                Join Now
+              </button>
+            )}
           </div>
         </div>
         <br></br>
-        <div className="mt-1 flex items-center justify-center">
-          <a
-            href="https://wa.me/9760375308"
-            className="rounded-md bg-green-600 px-3.5 py-2.5 text-1xl font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Contact Support +91 9760375308
-            <FaWhatsapp />
-          </a>
-        </div>
+        <div className="from-emerald-800 to-red-800  w-full min-h-screen text-white">
+          <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-1 lg:max-w-6xl lg:px-1">
+            <h2 className="text-center text-2xl font-semibold text-white">
+              <span className="relative inline-block pb-1">
+                FEATURES
+                <span className="absolute left-0 bottom-0 w-full h-1 bg-orange-500"></span>
+              </span>
+            </h2>
+            <br></br>
 
-        <div className="bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl lg:mx-0">
-              <p className="text-2xl font-semibold tracking-tight text-pretty text-white sm:text-3xl">
-                Review
-              </p>
-              <p className="mt-2 text-lg/8 text-white">What our learner say</p>
-            </div>
-            <div className="mx-auto mt-1 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-white pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {posts.map((post) => (
-                <article
-                  key={post.id}
-                  className="flex max-w-xl flex-col items-start justify-between"
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+              {products.map((product) => (
+                <a
+                  key={product.id}
+                  // href={product.href}
+                  className="group"
                 >
-                  <div className="flex items-center gap-x-4 text-sm">
-                    <time
-                      dateTime={post.datetime}
-                      className="text-white text-sm font-semibold"
-                    >
-                      {post.date}
-                    </time>
-                    <a
-                      href={post.category.href}
-                      className="relative z-10 rounded-full bg-indigo-400 px-3 py-1.5 font-medium text-black hover:bg-indigo"
-                    >
-                      {post.category.title}
-                    </a>
-                  </div>
-                  <div className="group relative">
-                    <h3 className="mt-3 text-lg/6 font-semibold text-white group-hover:text-white">
-                      <a href={post.href}>
-                        <span className="absolute inset-0" />
-                        {post.title}
-                      </a>
-                    </h3>
-                    <p className="mt-5 line-clamp-3 text-md font-medium text-white">
-                      {post.description}
-                    </p>
-                  </div>
-                  <div className="relative mt-8 flex items-center gap-x-4">
-                    <img
-                      alt=""
-                      src={post.author.imageUrl}
-                      className="size-10 rounded-full bg-white"
-                    />
-                    <div className="text-sm/6">
-                      <p className="font-semibold text-white">
-                        <a href={post.author.href}>
-                          <span className="absolute inset-0" />
-                          {post.author.name}
-                        </a>
-                      </p>
-                      <p className="text-white">{post.author.role}</p>
-                    </div>
-                  </div>
-                </article>
+                  <img
+                    alt={product.imageAlt}
+                    src={product.imageSrc}
+                    width={100}
+                    className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
+                  />
+
+                  <h3 className="mt-1 text-md font-semibold text-white-700">
+                    {product.name}
+                  </h3>
+                  <p className="mt-1 text-md font-bold text-white-900">
+                    {product.price}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-green-300">
+                    {product.imageAlt}
+                  </p>
+                </a>
               ))}
             </div>
           </div>
         </div>
+        <div className="min-h-screen items-center bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-10">
+          <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+            <h2 className="text-center text-2xl font-semibold text-white">
+              <span className="relative inline-block pb-1">
+                CHAT, TALK, LEARN, SPEAK & PRACTICE
+                <span className="absolute left-0 bottom-0 w-full h-1 bg-orange-500"></span>
+              </span>
+            </h2>
+            <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+              <div className="relative lg:row-span-2">
+                <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+                <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+                  <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                    <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
+                      Will be I able to speak English fluent from this web app
+                    </p>
+                    <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
+                      यदि आप तीन महीनों के बीच नई चीजें सीखने में 30 से 60 मिनट
+                      से अधिक समय बिताते है तो आप आसानी से Fluent अंग्रेजी बोलने
+                      में सक्षम हो जाएंगे, लेकिन याद रखें कि कड़ी मेहनत के बिना
+                      कुछ भी हासिल करना असंभव है, आपको अपना 100% भी देना होगा।
+                    </p>
+                  </div>
+                  <div className="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+                    <Image
+                      src={phone}
+                      className="h-[min(152px,40cqw)] object-cover"
+                      alt="cahtting_phone"
+                    />
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 lg:rounded-l-[2rem]"></div>
+              </div>
+              <div className="relative max-lg:row-start-1">
+                <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                  <div className="px-5 pt-5 sm:px-10 sm:pt-10">
+                    <p className="mt-2 text-xl font-bold tracking-tight text-black max-lg:text-center">
+                      How can I join this app?
+                    </p>
+                    <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
+                      इस ऐप से जुड़ने के लिए आपको केवल <b>199/-</b> का मेंबरशिप
+                      प्लान लेना होता है जो कि तीन महीने की वैधता के साथ आता है
+                      और इस ऐप को लॉग इन करना होगा उसके बाद आप इस ऐप के प्रीमियम
+                      सदस्य हैं और आप किसी से भी English चैट पर बात कर सकते हैं
+                      या कॉल पर बात कर सकते हैं।
+                    </p>
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem]"></div>
+              </div>
+              <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+                <div className="absolute inset-px rounded-lg bg-white"></div>
+                <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+                  <div className="px-8 pt-8 sm:px-10 sm:pt-10">
+                    <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
+                      Our upcoming features
+                    </p>
+                    <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
+                      आने वाले महीनों में लाइव चैट और कॉल के साथ-साथ अंग्रेजी
+                      सीखने का बेहतर माहौल बनाने के लिए हम नई सुविधाएँ लेकर आ
+                      रहे हैं जैसे: - ENGLISH AI CHATBOT, ENGLISH NEWS, ENGLISH
+                      NOVEL BOOK PDF, ENGLISH GAMES, ENGLISH MUSIC, ENGLISH
+                      SHORT VIDEO और बहुत कुछ...
+                    </p>
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5"></div>
+              </div>
+              <div className="relative lg:row-span-2">
+                <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+                <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+                  <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                    <p className="mt-2 text-xl font-bold tracking-tight text-gray-950 max-lg:text-center">
+                      Keep a few things in mind while talking
+                    </p>
+                    <p className="mt-2 max-w-lg text-md text-black max-lg:text-center">
+                      आप किसी से भी चैट या मैसेज कर सकते हैं, आप किसी से भी कॉल
+                      पर बात कर सकते हैं, सुनिश्चित करें और अंग्रेजी में बेहतर
+                      प्रवाह के लिए हमेशा अंग्रेजी में ही बात करने का प्रयास
+                      करें। कृपया बात करते समय अपनी निजी जानकारी किसी के साथ
+                      साझा न करें।
+                    </p>
+                  </div>
+                  <div className="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+                    <img
+                      className="h-[min(152px,40cqw)] object-cover"
+                      src="https://tailwindui.com/plus-assets/img/component-images/bento-03-security.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+              </div>
+            </div>
+          </div>
+          <br></br>
+          <div className="mt-1 flex items-center justify-center">
+            <a
+              href="https://wa.me/9760375308"
+              className="rounded-md bg-green-600 px-3.5 py-2.5 text-1xl font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Contact Support +91 9760375308
+              <FaWhatsapp />
+            </a>
+          </div>
 
-        <div className="flex justify-center mt-3">
-          <button class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup">
-            Join Now
-          </button>
-        </div>
-        <br></br>
-        <div className="flex justify-center">
-          <h2 className="text-2xl font-bold text-center tracking-tight text-white sm:text-2xl">
-            Important Links
-          </h2>
-        </div>
-        <div className="relative top-[30px] sm:bottom-[30px] flex flex-col lg:flex-row justify-between items-center gap-5 w-full p-5">
-          <a
-            href="https://www.spokenenglish.guru/"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-green-800 ring-1 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaGlobe className="mr-2" /> Website
-          </a>
-          <a
-            href="https://www.youtube.com/@SpokenEnglishGuru"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-red-700 ring-1 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaYoutube className="mr-2" /> YouTube
-          </a>
-          <a
-            href="https://www.instagram.com/spokenenglishguruofficial"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-pink-700 ring-1 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaInstagram className="mr-2" /> Instagram
-          </a>
-          <a
-            href="https://www.facebook.com/spokenenglishguruofficialpage"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-blue-700 ring-1 ring-yellow-600/20 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaFacebook className="mr-2" /> Facebook
-          </a>
-          <a
-            href="https://wa.me/9760375308"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-green-700 ring-1 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaWhatsapp className="mr-2" /> WhatsApp
-          </a>
-          <a
-            href="https://play.google.com/store/search?q=spoken%20english%20guru&c=apps&hl=en"
-            target="_blank"
-            className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-purple-700 ring-1 ring-inset transition hover:bg-yellow-100"
-          >
-            <FaGooglePlay className="mr-2" /> App
-          </a>
+          <div className="bg-gradient-to-r from-emerald-800 to-red-800 py-24 sm:py-10">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div className="mx-auto max-w-2xl lg:mx-0">
+                <p className="text-2xl font-semibold tracking-tight text-pretty text-white sm:text-3xl">
+                  Review
+                </p>
+                <p className="mt-2 text-lg/8 text-white">
+                  What our learner say
+                </p>
+              </div>
+              <div className="mx-auto mt-1 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-white pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                {posts.map((post) => (
+                  <article
+                    key={post.id}
+                    className="flex max-w-xl flex-col items-start justify-between"
+                  >
+                    <div className="flex items-center gap-x-4 text-sm">
+                      <time
+                        dateTime={post.datetime}
+                        className="text-white text-sm font-semibold"
+                      >
+                        {post.date}
+                      </time>
+                      <a
+                        href={post.category.href}
+                        className="relative z-10 rounded-full bg-indigo-400 px-3 py-1.5 font-medium text-black hover:bg-indigo"
+                      >
+                        {post.category.title}
+                      </a>
+                    </div>
+                    <div className="group relative">
+                      <h3 className="mt-3 text-lg/6 font-semibold text-white group-hover:text-white">
+                        <a href={post.href}>
+                          <span className="absolute inset-0" />
+                          {post.title}
+                        </a>
+                      </h3>
+                      <p className="mt-5 line-clamp-3 text-md font-medium text-white">
+                        {post.description}
+                      </p>
+                    </div>
+                    <div className="relative mt-8 flex items-center gap-x-4">
+                      <img
+                        alt=""
+                        src={post.author.imageUrl}
+                        className="size-10 rounded-full bg-white"
+                      />
+                      <div className="text-sm/6">
+                        <p className="font-semibold text-white">
+                          <a href={post.author.href}>
+                            <span className="absolute inset-0" />
+                            {post.author.name}
+                          </a>
+                        </p>
+                        <p className="text-white">{post.author.role}</p>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center mt-3">
+            <button class="text-2xl rounded-md border border-transparent bg-indigo-600 px-7 py-2 font-medium text-white hover:bg-indigo-700 animate-popup">
+              Join Now
+            </button>
+          </div>
+          <br></br>
+          <div className="flex justify-center">
+            <h2 className="text-2xl font-bold text-center tracking-tight text-white sm:text-2xl">
+              Important Links
+            </h2>
+          </div>
+          <div className="relative top-[30px] sm:bottom-[30px] flex flex-col lg:flex-row justify-between items-center gap-5 w-full p-5">
+            <a
+              href="https://www.spokenenglish.guru/"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-green-800 ring-1 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaGlobe className="mr-2" /> Website
+            </a>
+            <a
+              href="https://www.youtube.com/@SpokenEnglishGuru"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-red-700 ring-1 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaYoutube className="mr-2" /> YouTube
+            </a>
+            <a
+              href="https://www.instagram.com/spokenenglishguruofficial"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-pink-700 ring-1 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaInstagram className="mr-2" /> Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/spokenenglishguruofficialpage"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-blue-700 ring-1 ring-yellow-600/20 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaFacebook className="mr-2" /> Facebook
+            </a>
+            <a
+              href="https://wa.me/9760375308"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-green-700 ring-1 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaWhatsapp className="mr-2" /> WhatsApp
+            </a>
+            <a
+              href="https://play.google.com/store/search?q=spoken%20english%20guru&c=apps&hl=en"
+              target="_blank"
+              className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-bold text-purple-700 ring-1 ring-inset transition hover:bg-yellow-100"
+            >
+              <FaGooglePlay className="mr-2" /> App
+            </a>
+          </div>
         </div>
       </div>
-      <span className="text-white text-xs text-center items-center">
-        @2025 All things are Reserved.
-      </span>
+
+      <Footer />
     </div>
   );
 }

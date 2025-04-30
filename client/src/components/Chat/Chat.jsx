@@ -8,17 +8,12 @@ function Chat() {
     <div className="border-conversation-border grid grid-rows-[8fr_81fr_11fr] border-l relative  bg-conversation-panel-background  h-[100dvh] z-10">
       <ChatHeader />
 
-      <div className="overflow-y-scroll custom-scrollbar  ">
-      <ChatContainer />
-
-
-
+      <div className=" h-[80vh]  overflow-y-scroll custom-scrollbar">
+        <ChatContainer />
       </div>
-        
 
       <div className="">
-      <MessageBar />
-
+        <MessageBar />
       </div>
     </div>
   );
